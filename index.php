@@ -8,11 +8,11 @@
 <body>
     <h1>การใช้คำสั่งแบบ Conditione (กลุ่มคำสั่ง if)</h1>
     <?php   
-        echo "<h2?>คำสั่ง if</h2>";
+        echo "<h2?>คำสั่ง if</h2> <br><br>";
         $x = 5;
         $y = 8;
-        echo "\$x = $x";
-        echo "\$y = $y";
+        echo "\$x = $x <br>";
+        echo "\$y = $y <br>";
         if($x<$y){
             echo "ค่าในตัวแปร x น้อยกว่าต่าในตัวแปร y <br>";
         }
