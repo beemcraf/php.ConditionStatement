@@ -55,6 +55,11 @@
             echo "ฉันชอบ" .$value. "<br>"; 
         }
         echo "_______________________________________ <br>";
+        echo "<h1>Foreach loop แบบ key => value</h1>";
+        $food = array ("หมวย"=>"ส้มตำ","บูม"=>"หมูย่าง","บีม"=>"ผัดกระเพรา","อาร์ต"=>"ข้าวมันไก่");
+        foreach($food as $student=>$value){
+            echo "ชื่อ$student ชอบกิน$value<br>";
+        }
         
     ?>
 </body>
