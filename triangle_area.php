@@ -12,7 +12,8 @@
         $width = $_POST['width'];
         $area = 0.5*$height*$width;
         echo "<h3>รูปสามเหลี่ยมที่มีความสูง $height และความยาวฐาน $width </h3>";
-        echo "<br><br>"
+        echo "<br><br>";
+        echo "<h3>คำนวณพื้นที่ได้ $area ตารางหน่วย </h3>";
     ?>
 </body>
 </html>
