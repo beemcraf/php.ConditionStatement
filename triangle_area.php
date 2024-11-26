@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ผลการคำนวณพื้นที่รูปเรขาคณิต</title>
     <style>
-        /* Global Style */
+        
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -14,7 +14,6 @@
             color: #333;
         }
 
-        /* Container for the result */
         .container {
             max-width: 600px;
             margin: 50px auto;
@@ -25,7 +24,6 @@
             text-align: center;
         }
 
-        /* Header styles */
         h1 {
             font-size: 28px;
             color: #34495e;
@@ -45,7 +43,6 @@
             font-weight: bold;
         }
 
-        /* Footer */
         .footer {
             text-align: center;
             margin-top: 20px;
@@ -67,12 +64,11 @@
     <div class="container">
         <h1>พื้นที่รูปสามเหลี่ยม</h1>
         <?php
-            // ตรวจสอบว่าค่า height และ width ถูกส่งมาหรือไม่
             if (isset($_POST['height']) && isset($_POST['width'])) {
-                $height = floatval($_POST['height']); // แปลงค่าให้เป็นตัวเลขทศนิยม
-                $width = floatval($_POST['width']); // แปลงค่าให้เป็นตัวเลขทศนิยม
+                $height = floatval($_POST['height']); 
+                $width = floatval($_POST['width']); 
 
-                // ตรวจสอบว่าค่าที่ป้อนเป็นตัวเลขที่ถูกต้อง
+               
                 if ($height > 0 && $width > 0) {
                     $area = 0.5 * $height * $width;
                     echo "<h3>รูปสามเหลี่ยมที่มี</h3>";

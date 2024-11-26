@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Triangle Area Calculator</title>
     <style>
-        /* Global Style */
+       
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -14,7 +14,7 @@
             color: #333;
         }
 
-        /* Container for the form */
+        
         .container {
             max-width: 400px;
             margin: 50px auto;
@@ -25,7 +25,7 @@
             text-align: center;
         }
 
-        /* Header styles */
+        
         h2 {
             font-size: 24px;
             color: #34495e;
@@ -38,7 +38,7 @@
             margin-bottom: 20px;
         }
 
-        /* Form styles */
+        
         form label {
             font-size: 14px;
             display: block;
@@ -85,7 +85,7 @@
             background-color: #c0392b;
         }
 
-        /* Footer */
+       
         .footer {
             text-align: center;
             margin-top: 20px;
