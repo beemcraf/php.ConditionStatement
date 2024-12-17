@@ -79,39 +79,106 @@
     <h1>ผลลัพธ์การคำนวณ BMI</h1>
 
     <?php
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $firstName = $_POST['first_name'];
-        $lastName = $_POST['last_name'];
-        $age = $_POST['age'];
-        $weight = $_POST['weight'];
-        $height = $_POST['height'];
+// ฟังก์ชันคำนวณ BMI: รับน้ำหนัก (kg) และส่วนสูง (cm) คืนค่า BMI
+function calculateBMI($weight, $height) {
+    $heightInMeters = $height / 100;
+    return $weight / ($heightInMeters * $heightInMeters);
+}
 
-        $heightInMeters = $height / 100;
-        $bmi = $weight / ($heightInMeters * $heightInMeters);
-
-        echo "<div class='result'>";
-        echo "<h3>ชื่อ: $firstName $lastName</h3>";
-        echo "<h3>อายุ: $age ปี</h3>";
-        echo "<h3>น้ำหนัก: $weight กิโลกรัม</h3>";
-        echo "<h3>ส่วนสูง: $height เซนติเมตร</h3>";
-        echo "<h3>BMI: " . number_format($bmi, 2) . "</h3>";
-
-        if ($bmi < 18.5) {
-            echo "<p class='category'>ผลการประเมิน: น้ำหนักน้อยกว่ามาตรฐาน</p>";
-        } elseif ($bmi >= 18.5 && $bmi < 24.9) {
-            echo "<p class='category'>ผลการประเมิน: น้ำหนักปกติ</p>";
-        } elseif ($bmi >= 25 && $bmi < 29.9) {
-            echo "<p class='category'>ผลการประเมิน: น้ำหนักเกิน</p>";
-        } else {
-            echo "<p class='category'>ผลการประเมิน: โรคอ้วน</p>";
-        }
-
-        echo "</div>";
+// ฟังก์ชันแปลผล BMI: รับค่า BMI และคืนข้อความแปลผล
+function interpretBMI($bmi) {
+    if ($bmi < 18.5) {
+        return "น้ำหนักน้อยกว่ามาตรฐาน";
+    } elseif ($bmi >= 18.5 && $bmi < 24.9) {
+        return "น้ำหนักปกติ";
+    } elseif ($bmi >= 25 && $bmi < 29.9) {
+        return "น้ำหนักเกิน";
     } else {
-        echo "<p>กรุณากรอกข้อมูลในฟอร์มเพื่อคำนวณ BMI</p>";
+        return "โรคอ้วน";
     }
-    ?>
+}
 
-</div>
+// ตรวจสอบว่าเป็นการส่งข้อมูลแบบ POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $firstName = $_POST['first_name'];
+    $lastName = $_POST['last_name'];
+    $age = $_POST['age'];
+    $weight = $_POST['weight'];
+    $height = $_POST['height'];
+
+    // เรียกใช้ฟังก์ชันคำนวณ BMI
+    $bmi = calculateBMI($weight, $height);
+
+    // เรียกใช้ฟังก์ชันแปลผล BMI
+    $bmiResult = interpretBMI($bmi);
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ผลลัพธ์การคำนวณค่า BMI</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #ffccda, #ffe6f0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 500px;
+        }
+        h1 {
+            color: #ff66a3;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 16px;
+            color: #555;
+            margin: 5px 0;
+        }
+        .bmi-result {
+            font-weight: bold;
+            color: #ff1493;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            background: #ff66a3;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .back-link:hover {
+            background: #ff99c8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <?php if ($_SERVER['REQUEST_METHOD'] === 'POST'): ?>
+            <p>ชื่อ: <?php echo htmlspecialchars($firstName . " " . $lastName); ?></p>
+            <p>อายุ: <?php echo htmlspecialchars($age); ?> ปี</p>
+            <p>น้ำหนัก: <?php echo htmlspecialchars($weight); ?> กิโลกรัม</p>
+            <p>ส่วนสูง: <?php echo htmlspecialchars($height); ?> เซนติเมตร</p>
+            <p class="bmi-result">ค่า BMI: <?php echo number_format($bmi, 2); ?></p>
+            <p class="bmi-result">ผลการประเมิน: <?php echo $bmiResult; ?></p>
+        <?php else: ?>
+            <p>กรุณากรอกข้อมูลให้ถูกต้องในฟอร์ม</p>
+        <?php endif; ?>
+        <a href="bmi_form.php" class="back-link">ย้อนกลับ</a>
+    </div>
 </body>
 </html>
